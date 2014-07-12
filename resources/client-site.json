@@ -1,0 +1,84 @@
+{
+    "basePath": "https://api.myfox.me/v2",
+    "swaggerVersion": "1.2",
+    "apiVersion": "2.0",
+    "resourcePath": "/client-site",
+    "apis": [
+        {
+            "path": "/client/site/items",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "List available sites for the current user",
+                    "nickname": "clientSiteItems",
+                    "type": "SiteCollection",
+                    "notes": "Retrieves the site list attached to the current user account."
+                }
+            ]
+        },
+        {
+            "path": "/client/site/list",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Deprecated",
+                    "nickname": "clientSiteList",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Site"
+                    },
+                    "notes": "This endpoint is now deprecated and will not be supported after June 30th. Please use <code>client/site/items</code> instead."
+                }
+            ]
+        }
+    ],
+    "models": {
+        "SiteCollection": {
+            "id": "SiteCollection",
+            "properties": {
+                "items": {
+                    "description": "List of objects",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Site"
+                    }
+                }
+            },
+            "required": [
+                "items"
+            ]
+        },
+        "Site": {
+            "id": "Site",
+            "properties": {
+                "siteId": {
+                    "description": "The site unique identifier",
+                    "type": "integer"
+                },
+                "label": {
+                    "description": "The site label",
+                    "type": "string"
+                },
+                "brand": {
+                    "description": "The brand of the site",
+                    "type": "string"
+                },
+                "timezone": {
+                    "description": "The timezone of the site location",
+                    "type": "string"
+                },
+                "AXA": {
+                    "description": "AXA Assistance identifier",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "AXA",
+                "brand",
+                "label",
+                "siteId",
+                "timezone"
+            ]
+        }
+    }
+}

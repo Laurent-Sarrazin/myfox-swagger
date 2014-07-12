@@ -1,0 +1,206 @@
+{
+    "basePath": "https://api.myfox.me/v2",
+    "swaggerVersion": "1.2",
+    "apiVersion": "2.0",
+    "resourcePath": "/site-device-data-temperature",
+    "apis": [
+        {
+            "path": "/site/{siteId}/device/data/temperature/items",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "List all temperature sensor featured devices",
+                    "nickname": "deviceDataTemperatureItems",
+                    "type": "TemperatureSensorCollection",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/data/temperature/list",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Deprecated",
+                    "nickname": "deviceDataTemperatureList",
+                    "type": "array",
+                    "items": {
+                        "$ref": "TemperatureSensor"
+                    },
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ],
+                    "notes": "This endpoint is now deprecated and will not be supported after June 30th. Please use <code>/site/{siteId}/device/data/temperature/items</code> instead."
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{deviceId}/data/temperature",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Get temperature measures",
+                    "nickname": "deviceDataTemperatureGet",
+                    "type": "TemperatureRecordCollection",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "deviceId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's slave device"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "dateFrom",
+                            "type": "string",
+                            "required": false,
+                            "description": "Interval start of temperature measure date. Format: YYYY-MM-DDThh:mm:ssZ"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "dateTo",
+                            "type": "string",
+                            "required": false,
+                            "description": "Interval end of temperature measure date. Format: YYYY-MM-DDThh:mm:ssZ"
+                        }
+                    ],
+                    "notes": "Retrieves the history of temperature values. A maximum of 100 records are retrieved. If dateFrom is not specified, records from last week will be retrieved."
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{deviceId}/data/temperature/get",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Deprecated",
+                    "nickname": "deviceDataTemperatureGet_deprecated",
+                    "type": "array",
+                    "items": {
+                        "$ref": "TemperatureRecord"
+                    },
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "deviceId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's slave device"
+                        }
+                    ],
+                    "notes": "This endpoint is now deprecated and will not be supported after June 30th. Please use <code>/site/{siteId}/device/data/temperature</code> instead."
+                }
+            ]
+        }
+    ],
+    "models": {
+        "TemperatureRecordCollection": {
+            "id": "TemperatureRecordCollection",
+            "properties": {
+                "items": {
+                    "description": "List of objects",
+                    "type": "array",
+                    "items": {
+                        "$ref": "TemperatureRecord"
+                    }
+                }
+            },
+            "required": [
+                "items"
+            ]
+        },
+        "TemperatureRecord": {
+            "id": "TemperatureRecord",
+            "properties": {
+                "deviceId": {
+                    "description": "The temperature sensor device identifier",
+                    "type": "integer"
+                },
+                "celsius": {
+                    "description": "The temperature value is celsius degrees",
+                    "type": "float"
+                },
+                "recordedAt": {
+                    "description": "The temperature value creation date",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "celsius",
+                "deviceId",
+                "recordedAt"
+            ]
+        },
+        "TemperatureSensorCollection": {
+            "id": "TemperatureSensorCollection",
+            "properties": {
+                "items": {
+                    "description": "List of objects",
+                    "type": "array",
+                    "items": {
+                        "$ref": "TemperatureSensor"
+                    }
+                }
+            },
+            "required": [
+                "items"
+            ]
+        },
+        "TemperatureSensor": {
+            "id": "TemperatureSensor",
+            "properties": {
+                "deviceId": {
+                    "description": "The  device identifier",
+                    "type": "integer"
+                },
+                "label": {
+                    "description": "The device label",
+                    "type": "string"
+                },
+                "modelId": {
+                    "description": "The device model identifier",
+                    "type": "string"
+                },
+                "modelLabel": {
+                    "description": "The device model label",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "deviceId",
+                "label",
+                "modelId",
+                "modelLabel"
+            ]
+        }
+    }
+}

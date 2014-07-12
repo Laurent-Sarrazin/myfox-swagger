@@ -1,0 +1,180 @@
+{
+    "basePath": "https://api.myfox.me/v2",
+    "swaggerVersion": "1.2",
+    "apiVersion": "2.0",
+    "resourcePath": "/site-scenario",
+    "apis": [
+        {
+            "path": "/site/{siteId}/scenario/items",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "List available scenarios",
+                    "nickname": "scenarioList",
+                    "type": "ScenarioCollection",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/scenario/list",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Deprecated",
+                    "nickname": "deviceDataTemperatureGet_deprecated",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Scenario"
+                    },
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ],
+                    "notes": "This endpoint is now deprecated and will not be supported after June 30th. Please use <code>/site/{siteId}/scenario/items</code> instead."
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/scenario/{scenarioId}/disable",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Disable a scenario",
+                    "nickname": "scenarioDisable",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "scenarioId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's scenario"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/scenario/{scenarioId}/enable",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Enable a scenario",
+                    "nickname": "scenarioEnable",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "scenarioId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's scenario"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/scenario/{scenarioId}/play",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Play a scenario",
+                    "nickname": "scenarioPlay",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "scenarioId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's scenario"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "models": {
+        "ScenarioCollection": {
+            "id": "ScenarioCollection",
+            "properties": {
+                "items": {
+                    "description": "List of objects",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Scenario"
+                    }
+                }
+            },
+            "required": [
+                "items"
+            ]
+        },
+        "Scenario": {
+            "id": "Scenario",
+            "properties": {
+                "scenarioId": {
+                    "description": "The scenario identifier",
+                    "type": "integer"
+                },
+                "label": {
+                    "description": "The scenario label",
+                    "type": "string"
+                },
+                "typeLabel": {
+                    "description": "The scenario type label",
+                    "type": "string",
+                    "enum": [
+                        "onDemand",
+                        "scheduled",
+                        "onEvent",
+                        "simulation"
+                    ]
+                },
+                "enabled": {
+                    "description": "The enable state of the scenario",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "enabled",
+                "label",
+                "scenarioId",
+                "typeLabel"
+            ]
+        }
+    }
+}

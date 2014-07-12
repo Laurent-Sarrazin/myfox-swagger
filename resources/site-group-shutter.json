@@ -1,0 +1,181 @@
+{
+    "basePath": "https://api.myfox.me/v2",
+    "swaggerVersion": "1.2",
+    "apiVersion": "2.0",
+    "resourcePath": "/site-group-shutter",
+    "apis": [
+        {
+            "path": "/site/{siteId}/group/shutter/items",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "List groups of type shutter",
+                    "nickname": "groupShutterItems",
+                    "type": "GroupShutterCollection",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ],
+                    "notes": "Retrieves the shutter type group list for a specific site"
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/group/shutter/list",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Deprecated",
+                    "nickname": "groupShutterList",
+                    "type": "array",
+                    "items": {
+                        "$ref": "GroupShutter"
+                    },
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ],
+                    "notes": "This endpoint is now deprecated and will not be supported after June 30th. Please use <code>/site/{siteId}/group/shutter/items</code> instead."
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/group/{groupId}/shutter/close",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Close all shutters from a group",
+                    "nickname": "groupShutterClose",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "groupId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's group"
+                        }
+                    ],
+                    "notes": "If an error occurs on the group, id of the device as well as error description will be returned in the response body."
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/group/{groupId}/shutter/open",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Open all shutters from a group",
+                    "nickname": "groupShutterOpen",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "groupId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's group"
+                        }
+                    ],
+                    "notes": "If an error occurs on the group, id of the device as well as error description will be returned in the response body."
+                }
+            ]
+        }
+    ],
+    "models": {
+        "GroupShutterCollection": {
+            "id": "GroupShutterCollection",
+            "properties": {
+                "items": {
+                    "description": "List of objects",
+                    "type": "array",
+                    "items": {
+                        "$ref": "GroupShutter"
+                    }
+                }
+            },
+            "required": [
+                "items"
+            ]
+        },
+        "GroupShutter": {
+            "id": "GroupShutter",
+            "properties": {
+                "groupId": {
+                    "description": "The group identifier",
+                    "type": "integer"
+                },
+                "label": {
+                    "description": "The group label",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The group type",
+                    "type": "string"
+                },
+                "devices": {
+                    "description": "The group devices list",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Device"
+                    }
+                }
+            },
+            "required": [
+                "devices",
+                "groupId",
+                "label",
+                "type"
+            ]
+        },
+        "Device": {
+            "id": "Device",
+            "properties": {
+                "deviceId": {
+                    "description": "The  device identifier",
+                    "type": "integer"
+                },
+                "label": {
+                    "description": "The device label",
+                    "type": "string"
+                },
+                "modelId": {
+                    "description": "The device model identifier",
+                    "type": "string"
+                },
+                "modelLabel": {
+                    "description": "The device model label",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "deviceId",
+                "label",
+                "modelId",
+                "modelLabel"
+            ]
+        }
+    }
+}

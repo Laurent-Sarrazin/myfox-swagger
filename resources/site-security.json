@@ -1,0 +1,112 @@
+{
+    "basePath": "https://api.myfox.me/v2",
+    "swaggerVersion": "1.2",
+    "apiVersion": "2.0",
+    "resourcePath": "/site-security",
+    "apis": [
+        {
+            "path": "/site/{siteId}/security",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Get site security level",
+                    "nickname": "siteSeclevGet",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Security"
+                    },
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/security/get",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Deprecated",
+                    "nickname": "deprecated_siteSeclevGet",
+                    "type": "Security",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ],
+                    "notes": "This endpoint is now deprecated and will not be supported after June 30th. Please use <code>/site/{siteId}/security</code> instead."
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/security/set/{securityLevel}",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Set site security level",
+                    "nickname": "siteSeclevSet",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "securityLevel",
+                            "type": "string",
+                            "required": true,
+                            "description": "Security level to apply (armed, partial, disarmed)",
+                            "enum": [
+                                "armed",
+                                "partial",
+                                "disarmed"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "models": {
+        "Security": {
+            "id": "Security",
+            "properties": {
+                "status": {
+                    "description": "We recommend to use 'statusLabel' instead",
+                    "type": "integer",
+                    "enum": [
+                        1,
+                        2,
+                        4
+                    ]
+                },
+                "statusLabel": {
+                    "description": "The security level label",
+                    "type": "string",
+                    "enum": [
+                        "disarmed",
+                        "partial",
+                        "armed"
+                    ]
+                }
+            },
+            "required": [
+                "status",
+                "statusLabel"
+            ]
+        }
+    }
+}

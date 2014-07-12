@@ -1,0 +1,373 @@
+{
+    "basePath": "https://api.myfox.me/v2",
+    "swaggerVersion": "1.2",
+    "apiVersion": "2.0",
+    "resourcePath": "/site-device-camera",
+    "apis": [
+        {
+            "path": "/site/{siteId}/device/camera/items",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "List camera devices",
+                    "nickname": "deviceCameraItems",
+                    "type": "CameraCollection",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ],
+                    "notes": "Retrieves the camera list for a site."
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/camera/list",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Deprecated",
+                    "nickname": "deviceCameraList",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Camera"
+                    },
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ],
+                    "notes": "This endpoint is now deprecated and will not be supported after June 30th. Please use <code>/site/{siteId}/device/camera/items</code> instead."
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{cameraId}/camera/live/extend",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Add 30 seconds to live streaming",
+                    "nickname": "cameraLiveExtend",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "cameraId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's camera"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{cameraId}/camera/live/start/{protocol}",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Start live streaming from a camera",
+                    "nickname": "cameraLiveStart",
+                    "type": "Stream",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "cameraId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's camera"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "protocol",
+                            "type": "string",
+                            "required": true,
+                            "description": "Protocol to use for live (hls or rtmp)",
+                            "enum": [
+                                "hls",
+                                "rtmp"
+                            ]
+                        }
+                    ],
+                    "notes": "The 'location' attribute of the response corresponds to the url to retrieve the live stream. Depending on the camera model, some streaming protocol may not be available"
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{cameraId}/camera/live/stop",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Stop live streaming from a camera",
+                    "nickname": "cameraLiveStop",
+                    "type": "boolean",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "cameraId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's camera"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{cameraId}/camera/preview/take",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Get a volatile preview from a camera",
+                    "nickname": "cameraPreviewTake",
+                    "type": "binary",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "cameraId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's camera"
+                        }
+                    ],
+                    "notes": "This resource returns the binary stream for the preview",
+                    "produces": [
+                        "image/*"
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{cameraId}/camera/recording/start",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Start recording from a camera",
+                    "nickname": "cameraRecordingStart",
+                    "type": "Recording",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "cameraId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's camera"
+                        }
+                    ],
+                    "notes": "The recording will start immediately and will last for 2 minutes before being automatically stopped"
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{cameraId}/camera/recording/stop",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Stop recording from a camera",
+                    "nickname": "cameraRecordingStop",
+                    "type": "void",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "cameraId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's camera"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{cameraId}/camera/snapshot/take",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Take a snapshot from a camera and save it in the library",
+                    "nickname": "cameraSnapshotTake",
+                    "type": "Snapshot",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "cameraId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's camera"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "models": {
+        "CameraCollection": {
+            "id": "CameraCollection",
+            "properties": {
+                "items": {
+                    "description": "List of objects",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Camera"
+                    }
+                }
+            },
+            "required": [
+                "items"
+            ]
+        },
+        "Camera": {
+            "id": "Camera",
+            "properties": {
+                "deviceId": {
+                    "description": "The camera identifier",
+                    "type": "integer"
+                },
+                "label": {
+                    "description": "The camera label",
+                    "type": "integer"
+                },
+                "resolutionHeight": {
+                    "description": "The produced image height in pixels",
+                    "type": "integer"
+                },
+                "resolutionWidth": {
+                    "description": "The produced image width in pixels",
+                    "type": "integer"
+                },
+                "modelId": {
+                    "description": "The camera model identifier",
+                    "type": "integer"
+                },
+                "modelLabel": {
+                    "description": "The camera model name",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "deviceId",
+                "label",
+                "modelId",
+                "modelLabel",
+                "resolutionHeight",
+                "resolutionWidth"
+            ]
+        },
+        "Stream": {
+            "id": "Stream",
+            "properties": {
+                "GUID": {
+                    "description": "The stream identifier",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "The stream URL",
+                    "type": "string"
+                },
+                "protocol": {
+                    "description": "The stream protocol",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "GUID",
+                "location",
+                "protocol"
+            ]
+        },
+        "Recording": {
+            "id": "Recording",
+            "properties": {
+                "createdAt": {
+                    "description": "The video file creation date",
+                    "type": "integer"
+                },
+                "videoId": {
+                    "description": "The video identifier",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "createdAt",
+                "videoId"
+            ]
+        },
+        "Snapshot": {
+            "id": "Snapshot",
+            "properties": {
+                "imageId": {
+                    "description": "The image identifier",
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "description": "The image file creation date",
+                    "type": "integer"
+                },
+                "fileURL": {
+                    "description": "The image file URL on the library",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "createdAt",
+                "fileURL",
+                "imageId"
+            ]
+        }
+    }
+}

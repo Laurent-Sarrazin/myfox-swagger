@@ -1,0 +1,137 @@
+{
+    "basePath": "https://api.myfox.me/v2",
+    "swaggerVersion": "1.2",
+    "apiVersion": "2.0",
+    "resourcePath": "/site-history",
+    "apis": [
+        {
+            "path": "/site/{siteId}/history",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Get site history",
+                    "nickname": "siteHistory",
+                    "type": "SiteEventCollection",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "dateFrom",
+                            "type": "string",
+                            "required": false,
+                            "description": "Interval start of event date. Format: YYYY-MM-DDThh:mm:ssZ",
+                            "format": "date"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "dateTo",
+                            "type": "string",
+                            "required": false,
+                            "description": "Interval end of event date. Format: YYYY-MM-DDThh:mm:ssZ",
+                            "format": "date"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "dateOrder",
+                            "type": "integer",
+                            "required": false,
+                            "description": "Sort results. 1 for ascending, -1 for descending."
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "type",
+                            "type": "string",
+                            "required": false,
+                            "description": "Comma separated type of events to retrieve (alarm, access, account, config, diagnosis, homeAuto, security, scenario)"
+                        }
+                    ],
+                    "notes": "Retrieves the site events. If a date if specified, all events of the specified day are retrieved. Otherwise, all events from current day are retrieved. Results are limited to 300 records."
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/history/get",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Deprecated",
+                    "nickname": "siteHistoryGet",
+                    "type": "array",
+                    "items": {
+                        "$ref": "SiteEvent"
+                    },
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ],
+                    "notes": "This endpoint is now deprecated and will not be supported after June 30th. Please use <code>/site/{siteId}/history</code> instead."
+                }
+            ]
+        }
+    ],
+    "models": {
+        "SiteEventCollection": {
+            "id": "SiteEventCollection",
+            "properties": {
+                "items": {
+                    "description": "List of objects",
+                    "type": "array",
+                    "items": {
+                        "$ref": "SiteEvent"
+                    }
+                }
+            },
+            "required": [
+                "items"
+            ]
+        },
+        "SiteEvent": {
+            "id": "SiteEvent",
+            "properties": {
+                "logId": {
+                    "description": "The event identifier",
+                    "type": "integer"
+                },
+                "label": {
+                    "description": "The event label",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The event type",
+                    "type": "string",
+                    "enum": [
+                        "scenario",
+                        "homeAuto",
+                        "security",
+                        "config",
+                        "alarm",
+                        "access",
+                        "account",
+                        "diagnosis"
+                    ]
+                },
+                "createdAt": {
+                    "description": "The event date",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "createdAt",
+                "label",
+                "logId",
+                "type"
+            ]
+        }
+    }
+}

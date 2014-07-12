@@ -1,0 +1,344 @@
+{
+    "basePath": "https://api.myfox.me/v2",
+    "swaggerVersion": "1.2",
+    "apiVersion": "2.0",
+    "resourcePath": "/site-library",
+    "apis": [
+        {
+            "path": "/site/{siteId}/library/image/items",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Get all images taken from a site's cameras",
+                    "nickname": "libraryImageItems",
+                    "type": "ImageCollection",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "cameraId",
+                            "type": "integer",
+                            "required": false,
+                            "description": "ID of user's camera"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "dateFrom",
+                            "type": "string",
+                            "required": false,
+                            "description": "Interval start of image's creation date. Format: YYYY-MM-DDThh:mm:ssZ"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "dateTo",
+                            "type": "string",
+                            "required": false,
+                            "description": "Interval end of image's creation date. Format: YYYY-MM-DDThh:mm:ssZ"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "dateOrder",
+                            "type": "integer",
+                            "required": false,
+                            "description": "Sort results. 1 for ascending, -1 for descending."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/library/image/list",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Deprecated",
+                    "nickname": "libraryImageGet",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Image"
+                    },
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ],
+                    "notes": "This endpoint is now deprecated and will not be supported after June 30th. Please use <code>/site/{siteId}/library/image/items</code> instead."
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/library/video/items",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Get all videos taken from a site's cameras",
+                    "nickname": "libraryVideoItems",
+                    "type": "VideoCollection",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "cameraId",
+                            "type": "integer",
+                            "required": false,
+                            "description": "ID of user's camera"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "dateFrom",
+                            "type": "string",
+                            "required": false,
+                            "description": "Interval start of video's creation date. Format: YYYY-MM-DDThh:mm:ssZ"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "dateTo",
+                            "type": "string",
+                            "required": false,
+                            "description": "Interval end of video's creation date. Format: YYYY-MM-DDThh:mm:ssZ"
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "dateOrder",
+                            "type": "integer",
+                            "required": false,
+                            "description": "Sort results. 1 for ascending, -1 for descending."
+                        },
+                        {
+                            "paramType": "query",
+                            "name": "isRecording",
+                            "type": "boolean",
+                            "required": false,
+                            "description": "Is the video currently recording ?"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/library/video/list",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Deprecated",
+                    "nickname": "libraryVideoGet",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Video"
+                    },
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ],
+                    "notes": "This endpoint is now deprecated and will not be supported after June 30th. Please use <code>/site/{siteId}/library/video/items</code> instead."
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/library/video/{videoId}/play",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Get video informations for HLS playing",
+                    "nickname": "libraryVideoPlay",
+                    "type": "VideoPlayHLS",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "videoId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of video"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "models": {
+        "ImageCollection": {
+            "id": "ImageCollection",
+            "properties": {
+                "items": {
+                    "description": "List of objects",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Image"
+                    }
+                }
+            },
+            "required": [
+                "items"
+            ]
+        },
+        "Image": {
+            "id": "Image",
+            "properties": {
+                "imageId": {
+                    "description": "The image identifier",
+                    "type": "integer"
+                },
+                "cameraId": {
+                    "description": "This value can be null if the camera has been uninstalled.",
+                    "type": "integer"
+                },
+                "cameraLabel": {
+                    "description": "The label of the camera that has captured the image",
+                    "type": "integer"
+                },
+                "height": {
+                    "description": "The image height in pixels",
+                    "type": "integer"
+                },
+                "width": {
+                    "description": "The image width in pixels",
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "description": "The image creation date",
+                    "type": "integer"
+                },
+                "fileURL": {
+                    "description": "The download URL",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "cameraId",
+                "cameraLabel",
+                "createdAt",
+                "fileURL",
+                "height",
+                "imageId",
+                "width"
+            ]
+        },
+        "VideoCollection": {
+            "id": "VideoCollection",
+            "properties": {
+                "items": {
+                    "description": "List of objects",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Video"
+                    }
+                }
+            },
+            "required": [
+                "items"
+            ]
+        },
+        "Video": {
+            "id": "Video",
+            "properties": {
+                "videoId": {
+                    "description": "The video identifier",
+                    "type": "integer"
+                },
+                "cameraId": {
+                    "description": "The camera identifier",
+                    "type": "integer"
+                },
+                "cameraLabel": {
+                    "description": "The camera label",
+                    "type": "string"
+                },
+                "duration": {
+                    "description": "The video duration, in seconds",
+                    "type": "integer"
+                },
+                "height": {
+                    "description": "The video height, in pixels",
+                    "type": "integer"
+                },
+                "width": {
+                    "description": "The video width, in pixels",
+                    "type": "integer"
+                },
+                "isRecording": {
+                    "description": "Flag indicating if the video is currently recording",
+                    "type": "boolean"
+                },
+                "createdAt": {
+                    "description": "The video creation date",
+                    "type": "integer"
+                },
+                "fileURL": {
+                    "description": "The video file URL",
+                    "type": "string"
+                },
+                "playURL": {
+                    "description": "URL to get informations for HLS playing",
+                    "type": "string"
+                },
+                "previewURL": {
+                    "description": "The video preview file URL",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "cameraId",
+                "cameraLabel",
+                "createdAt",
+                "duration",
+                "fileURL",
+                "height",
+                "isRecording",
+                "playURL",
+                "previewURL",
+                "videoId",
+                "width"
+            ]
+        },
+        "VideoPlayHLS": {
+            "id": "VideoPlayHLS",
+            "properties": {
+                "videoId": {
+                    "description": "The video identifier",
+                    "type": "integer"
+                },
+                "location": {
+                    "description": "The stream URL",
+                    "type": "string"
+                },
+                "protocol": {
+                    "description": "The stream protocol",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "location",
+                "protocol",
+                "videoId"
+            ]
+        }
+    }
+}

@@ -1,0 +1,148 @@
+{
+    "basePath": "https://api.myfox.me/v2",
+    "swaggerVersion": "1.2",
+    "apiVersion": "2.0",
+    "resourcePath": "/site-device-socket",
+    "apis": [
+        {
+            "path": "/site/{siteId}/device/socket/items",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "List socket devices",
+                    "nickname": "deviceSocketItems",
+                    "type": "SocketCollection",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/socket/list",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Deprecated",
+                    "nickname": "deviceSocketList",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Socket"
+                    },
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ],
+                    "notes": "This endpoint is now deprecated and will not be supported after June 30th. Please use <code>/site/{siteId}/device/socket/items</code> instead."
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{deviceId}/socket/off",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Turn off a device",
+                    "nickname": "deviceSocketOff",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "deviceId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's device"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{deviceId}/socket/on",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Turn on a device",
+                    "nickname": "deviceSocketOn",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "deviceId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's device"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "models": {
+        "SocketCollection": {
+            "id": "SocketCollection",
+            "properties": {
+                "items": {
+                    "description": "List of objects",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Socket"
+                    }
+                }
+            },
+            "required": [
+                "items"
+            ]
+        },
+        "Socket": {
+            "id": "Socket",
+            "properties": {
+                "deviceId": {
+                    "description": "The  device identifier",
+                    "type": "integer"
+                },
+                "label": {
+                    "description": "The device label",
+                    "type": "string"
+                },
+                "modelId": {
+                    "description": "The device model identifier",
+                    "type": "string"
+                },
+                "modelLabel": {
+                    "description": "The device model label",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "deviceId",
+                "label",
+                "modelId",
+                "modelLabel"
+            ]
+        }
+    }
+}

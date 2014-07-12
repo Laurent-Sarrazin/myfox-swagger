@@ -1,0 +1,149 @@
+{
+    "basePath": "https://api.myfox.me/v2",
+    "swaggerVersion": "1.2",
+    "apiVersion": "2.0",
+    "resourcePath": "/site-device-gate",
+    "apis": [
+        {
+            "path": "/site/{siteId}/device/gate/items",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "List gate devices",
+                    "nickname": "deviceGateItems",
+                    "type": "GateCollection",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/gate/list",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Deprecated",
+                    "nickname": "deviceGateList",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Gate"
+                    },
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ],
+                    "notes": "This endpoint is now deprecated and will not be supported after June 30th. Please use <code>/site/{siteId}/device/gate/items</code> instead."
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{deviceId}/gate/perform/one",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Perform action #1",
+                    "nickname": "deviceGatePerformOne",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "deviceId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's device"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{deviceId}/gate/perform/two",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Perform action #2",
+                    "nickname": "deviceGatePerformTwo",
+                    "type": "void",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "deviceId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's slave device"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "models": {
+        "GateCollection": {
+            "id": "GateCollection",
+            "properties": {
+                "items": {
+                    "description": "List of objects",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Gate"
+                    }
+                }
+            },
+            "required": [
+                "items"
+            ]
+        },
+        "Gate": {
+            "id": "Gate",
+            "properties": {
+                "deviceId": {
+                    "description": "The  device identifier",
+                    "type": "integer"
+                },
+                "label": {
+                    "description": "The device label",
+                    "type": "string"
+                },
+                "modelId": {
+                    "description": "The device model identifier",
+                    "type": "string"
+                },
+                "modelLabel": {
+                    "description": "The device model label",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "deviceId",
+                "label",
+                "modelId",
+                "modelLabel"
+            ]
+        }
+    }
+}

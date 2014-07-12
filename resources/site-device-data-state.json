@@ -1,0 +1,129 @@
+{
+    "basePath": "https://api.myfox.me/v2",
+    "swaggerVersion": "1.2",
+    "apiVersion": "2.0",
+    "resourcePath": "/site-device-data-state",
+    "apis": [
+        {
+            "path": "/site/{siteId}/device/data/state/items",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "List devices with state data",
+                    "nickname": "deviceDataStateItems",
+                    "type": "DeviceWithStateCollection",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{deviceId}/data/state",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Get device state",
+                    "nickname": "deviceDataState",
+                    "type": "DeviceWithStateState",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "deviceId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's slave device"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "models": {
+        "DeviceWithStateState": {
+            "id": "DeviceWithStateState",
+            "properties": {
+                "deviceId": {
+                    "description": "The device identifier",
+                    "type": "integer"
+                },
+                "stateLabel": {
+                    "description": "Current state",
+                    "enum": [
+                        "opened",
+                        "closed"
+                    ],
+                    "$ref": "string, null"
+                }
+            },
+            "required": [
+                "deviceId",
+                "stateLabel"
+            ]
+        },
+        "DeviceWithStateCollection": {
+            "id": "DeviceWithStateCollection",
+            "properties": {
+                "items": {
+                    "description": "List of objects",
+                    "type": "array",
+                    "items": {
+                        "$ref": "DeviceWithState"
+                    }
+                }
+            },
+            "required": [
+                "items"
+            ]
+        },
+        "DeviceWithState": {
+            "id": "DeviceWithState",
+            "properties": {
+                "deviceId": {
+                    "description": "The  device identifier",
+                    "type": "integer"
+                },
+                "label": {
+                    "description": "The device label",
+                    "type": "string"
+                },
+                "stateLabel": {
+                    "description": "Current state",
+                    "enum": [
+                        "opened",
+                        "closed"
+                    ],
+                    "$ref": "string, null"
+                },
+                "modelId": {
+                    "description": "The device model identifier",
+                    "type": "string"
+                },
+                "modelLabel": {
+                    "description": "The device model label",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "deviceId",
+                "label",
+                "modelId",
+                "modelLabel",
+                "stateLabel"
+            ]
+        }
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "apiVersion": "2.0",
+    "swaggerVersion": "1.2",
+    "apis": [
+        {
+            "path": "/client-site.json"
+        },
+        {
+            "path": "/site-device-camera.json"
+        },
+        {
+            "path": "/site-device-data-state.json"
+        },
+        {
+            "path": "/site-device-data-temperature.json"
+        },
+        {
+            "path": "/site-device-gate.json"
+        },
+        {
+            "path": "/site-device-heater.json"
+        },
+        {
+            "path": "/site-device-shutter.json"
+        },
+        {
+            "path": "/site-device-socket.json"
+        },
+        {
+            "path": "/site-group-electric.json"
+        },
+        {
+            "path": "/site-group-shutter.json"
+        },
+        {
+            "path": "/site-history.json"
+        },
+        {
+            "path": "/site-library.json"
+        },
+        {
+            "path": "/site-scenario.json"
+        },
+        {
+            "path": "/site-security.json"
+        }
+    ]
+}

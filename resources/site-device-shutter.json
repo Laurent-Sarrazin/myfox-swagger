@@ -1,0 +1,148 @@
+{
+    "basePath": "https://api.myfox.me/v2",
+    "swaggerVersion": "1.2",
+    "apiVersion": "2.0",
+    "resourcePath": "/site-device-shutter",
+    "apis": [
+        {
+            "path": "/site/{siteId}/device/shutter/items",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "List shutter devices",
+                    "nickname": "deviceShutterItems",
+                    "type": "ShutterCollection",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/shutter/list",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Deprecated",
+                    "nickname": "deviceShutterList",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Shutter"
+                    },
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ],
+                    "notes": "This endpoint is now deprecated and will not be supported after June 30th. Please use <code>/site/{siteId}/device/shutter/items</code> instead."
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{deviceId}/shutter/close",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Close shutter",
+                    "nickname": "deviceShutterClose",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "deviceId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's device"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{deviceId}/shutter/open",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Open shutter",
+                    "nickname": "deviceShutterOpen",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "deviceId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's device"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "models": {
+        "ShutterCollection": {
+            "id": "ShutterCollection",
+            "properties": {
+                "items": {
+                    "description": "List of objects",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Shutter"
+                    }
+                }
+            },
+            "required": [
+                "items"
+            ]
+        },
+        "Shutter": {
+            "id": "Shutter",
+            "properties": {
+                "deviceId": {
+                    "description": "The  device identifier",
+                    "type": "integer"
+                },
+                "label": {
+                    "description": "The device label",
+                    "type": "string"
+                },
+                "modelId": {
+                    "description": "The device model identifier",
+                    "type": "string"
+                },
+                "modelLabel": {
+                    "description": "The device model label",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "deviceId",
+                "label",
+                "modelId",
+                "modelLabel"
+            ]
+        }
+    }
+}

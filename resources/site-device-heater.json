@@ -1,0 +1,220 @@
+{
+    "basePath": "https://api.myfox.me/v2",
+    "swaggerVersion": "1.2",
+    "apiVersion": "2.0",
+    "resourcePath": "/site-device-heater",
+    "apis": [
+        {
+            "path": "/site/{siteId}/device/heater/items",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "List heater devices",
+                    "nickname": "deviceHeaterItems",
+                    "type": "HeaterCollection",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/heater/list",
+            "operations": [
+                {
+                    "method": "GET",
+                    "summary": "Deprecated",
+                    "nickname": "deviceHeaterList",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Heater"
+                    },
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        }
+                    ],
+                    "notes": "This endpoint is now deprecated and will not be supported after June 30th. Please use <code>/site/{siteId}/device/heater/items</code> instead."
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{deviceId}/heater/eco",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Set a heater to 'eco' mode",
+                    "nickname": "deviceHeaterOn",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "deviceId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's device"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{deviceId}/heater/frost",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Set a heater to 'frost' mode",
+                    "nickname": "deviceHeaterOn",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "deviceId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's device"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{deviceId}/heater/off",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Set a heater to 'off' mode",
+                    "nickname": "deviceHeaterOff",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "deviceId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's device"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/site/{siteId}/device/{deviceId}/heater/on",
+            "operations": [
+                {
+                    "method": "POST",
+                    "summary": "Set a heater to 'on' mode",
+                    "nickname": "deviceHeaterOn",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "siteId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of user's site"
+                        },
+                        {
+                            "paramType": "path",
+                            "name": "deviceId",
+                            "type": "integer",
+                            "required": true,
+                            "description": "ID of site's device"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "models": {
+        "HeaterCollection": {
+            "id": "HeaterCollection",
+            "properties": {
+                "items": {
+                    "description": "List of objects",
+                    "type": "array",
+                    "items": {
+                        "$ref": "Heater"
+                    }
+                }
+            },
+            "required": [
+                "items"
+            ]
+        },
+        "Heater": {
+            "id": "Heater",
+            "properties": {
+                "modeLabel": {
+                    "description": "The heater heating mode",
+                    "type": "string",
+                    "enum": [
+                        "boiler",
+                        "wired"
+                    ]
+                },
+                "stateLabel": {
+                    "description": "The heater state",
+                    "type": "string",
+                    "enum": [
+                        "on",
+                        "off",
+                        "eco",
+                        "frost"
+                    ]
+                },
+                "deviceId": {
+                    "description": "The  device identifier",
+                    "type": "integer"
+                },
+                "label": {
+                    "description": "The device label",
+                    "type": "string"
+                },
+                "modelId": {
+                    "description": "The device model identifier",
+                    "type": "string"
+                },
+                "modelLabel": {
+                    "description": "The device model label",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "deviceId",
+                "label",
+                "modeLabel",
+                "modelId",
+                "modelLabel",
+                "stateLabel"
+            ]
+        }
+    }
+}
