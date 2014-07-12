@@ -55,6 +55,7 @@
                     "method": "POST",
                     "summary": "Disable a scenario",
                     "nickname": "scenarioDisable",
+                    "type": "void",
                     "parameters": [
                         {
                             "paramType": "path",
@@ -81,6 +82,7 @@
                     "method": "POST",
                     "summary": "Enable a scenario",
                     "nickname": "scenarioEnable",
+                    "type": "void",
                     "parameters": [
                         {
                             "paramType": "path",
@@ -107,6 +109,7 @@
                     "method": "POST",
                     "summary": "Play a scenario",
                     "nickname": "scenarioPlay",
+                    "type": "void",
                     "parameters": [
                         {
                             "paramType": "path",

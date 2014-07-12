@@ -55,6 +55,7 @@
                     "method": "POST",
                     "summary": "Turn off a device",
                     "nickname": "deviceSocketOff",
+                    "type": "void",
                     "parameters": [
                         {
                             "paramType": "path",
@@ -81,6 +82,7 @@
                     "method": "POST",
                     "summary": "Turn on a device",
                     "nickname": "deviceSocketOn",
+                    "type": "void",
                     "parameters": [
                         {
                             "paramType": "path",

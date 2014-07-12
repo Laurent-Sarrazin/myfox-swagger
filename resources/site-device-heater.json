@@ -55,6 +55,7 @@
                     "method": "POST",
                     "summary": "Set a heater to 'eco' mode",
                     "nickname": "deviceHeaterOn",
+                    "type": "void",
                     "parameters": [
                         {
                             "paramType": "path",
@@ -81,6 +82,7 @@
                     "method": "POST",
                     "summary": "Set a heater to 'frost' mode",
                     "nickname": "deviceHeaterOn",
+                    "type": "void",
                     "parameters": [
                         {
                             "paramType": "path",
@@ -107,6 +109,7 @@
                     "method": "POST",
                     "summary": "Set a heater to 'off' mode",
                     "nickname": "deviceHeaterOff",
+                    "type": "void",
                     "parameters": [
                         {
                             "paramType": "path",
@@ -133,6 +136,7 @@
                     "method": "POST",
                     "summary": "Set a heater to 'on' mode",
                     "nickname": "deviceHeaterOn",
+                    "type": "void",
                     "parameters": [
                         {
                             "paramType": "path",

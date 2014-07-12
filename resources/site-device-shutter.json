@@ -55,6 +55,7 @@
                     "method": "POST",
                     "summary": "Close shutter",
                     "nickname": "deviceShutterClose",
+                    "type": "void",
                     "parameters": [
                         {
                             "paramType": "path",
@@ -81,6 +82,7 @@
                     "method": "POST",
                     "summary": "Open shutter",
                     "nickname": "deviceShutterOpen",
+                    "type": "void",
                     "parameters": [
                         {
                             "paramType": "path",

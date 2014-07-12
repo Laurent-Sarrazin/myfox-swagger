@@ -55,6 +55,7 @@
                     "method": "POST",
                     "summary": "Set site security level",
                     "nickname": "siteSeclevSet",
+                    "type": "void",
                     "parameters": [
                         {
                             "paramType": "path",

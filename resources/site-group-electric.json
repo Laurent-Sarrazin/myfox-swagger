@@ -56,6 +56,7 @@
                     "method": "POST",
                     "summary": "Turn off all electric devices from a group",
                     "nickname": "groupElectricOff",
+                    "type": "void",
                     "parameters": [
                         {
                             "paramType": "path",
@@ -83,6 +84,7 @@
                     "method": "POST",
                     "summary": "Turn on all electric devices from a group",
                     "nickname": "groupElectricOn",
+                    "type": "void",
                     "parameters": [
                         {
                             "paramType": "path",

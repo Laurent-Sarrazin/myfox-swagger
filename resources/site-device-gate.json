@@ -55,6 +55,7 @@
                     "method": "POST",
                     "summary": "Perform action #1",
                     "nickname": "deviceGatePerformOne",
+                    "type": "void",
                     "parameters": [
                         {
                             "paramType": "path",
